@@ -1,19 +1,40 @@
 import React, { useState } from 'react';
-import { Box, Button, FormLabel, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { addPost } from '../api-helpers/helpers';
 
 const New = () => {
   const [inputs, setInputs] = useState({
-    title: '',
-    body: '',
-    imageUrl: '',
+    instrument: '',
+    description: '',
+    price: '',
+    transactionType: '', // Add a new state for the transaction type
   });
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
+  // Handle the radio button change
+  const handleRadioChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      transactionType: e.target.value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
@@ -21,11 +42,12 @@ const New = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+
   return (
     <Box display="flex" flexDirection={'column'} width="100%" height="100%">
       <Box display="flex" margin="auto">
         <Typography fontWeight={'bold'} variant="h4">
-          Write Your New Post
+          Buy/Sell An Instrument
         </Typography>
       </Box>
       <form onSubmit={handleSubmit}>
@@ -36,32 +58,51 @@ const New = () => {
           flexDirection={'column'}
           width="80%"
         >
-          <FormLabel>Title</FormLabel>
+          <FormLabel>Instrument</FormLabel>
           <TextField
             onChange={handleChange}
-            name="title"
-            value={inputs.title}
+            name="instrument"
+            value={inputs.instrument}
             variant="standard"
             margin="normal"
           />
-          <FormLabel>Body</FormLabel>
+          <FormLabel>Describe The Instrument</FormLabel>
           <TextField
             onChange={handleChange}
-            name="body"
-            value={inputs.body}
+            name="description"
+            value={inputs.description}
             variant="standard"
             margin="normal"
           />
-          <FormLabel>Image URL</FormLabel>
+          <FormLabel>Price</FormLabel>
           <TextField
             onChange={handleChange}
-            name="imageUrl"
-            value={inputs.imageUrl}
+            name="price"
+            value={inputs.price}
             variant="standard"
             margin="normal"
           />
-          <FormLabel>Date</FormLabel>
-          <TextField variant="standard" margin="normal" />
+          {/* Radio buttons for Buy/Sell */}
+          <FormControl component="fieldset">
+            <FormLabel component="legend">What Would You Like To Do</FormLabel>
+            <RadioGroup
+              aria-label="transactionType"
+              name="transactionType"
+              value={inputs.transactionType}
+              onChange={handleRadioChange}
+            >
+              <FormControlLabel
+                value="Buy"
+                control={<Radio color="primary" />}
+                label="Buy"
+              />
+              <FormControlLabel
+                value="Sell"
+                control={<Radio color="primary" />}
+                label="Sell"
+              />
+            </RadioGroup>
+          </FormControl>
           <Button
             type="submit"
             color="warning"

@@ -10,9 +10,29 @@ export const getAllPosts = async () => {
   return data;
 };
 
+// export const sendLoginRequest = async (signup, data) => {
+//   const res = await axios
+//     .post(
+//       `/users/${signup ? 'signup' : 'login'}`,
+//       {
+//         name: data.name ? data.name : '',
+//         username: data.username,
+//         password: data.password,
+//       },
+//       { withCredentials: true }
+//     )
+//     .catch((err) => console.log(err));
+
+//   if (res.status !== 200 && res.status !== 201) {
+//     return console.log('Unable to Login');
+//   }
+//   const resData = await res.data;
+//   return resData;
+// };
+
 export const sendLoginRequest = async (signup, data) => {
-  const res = await axios
-    .post(
+  try {
+    const res = await axios.post(
       `/users/${signup ? 'signup' : 'login'}`,
       {
         name: data.name ? data.name : '',
@@ -23,23 +43,31 @@ export const sendLoginRequest = async (signup, data) => {
         instrument: data.instrument ? data.instrument : '',
       },
       { withCredentials: true }
-    )
-    .catch((err) => console.log(err));
+    );
 
-  if (res.status !== 200 && res.status !== 201) {
-    return console.log('Unable to Login');
+    if (res.status === 200 || res.status === 201) {
+      // Login successful, handle redirection here
+      window.location.href = '/welcome'; // Redirect to the welcome page
+    } else {
+      console.log('Unable to Login');
+    }
+  } catch (err) {
+    console.log(err);
   }
-  const resData = await res.data;
-  return resData;
 };
 
 export const addPost = async (data) => {
   const res = await axios
-    .post('/posts', {
-      title: data.title,
-      body: data.body,
-      imageUrl: data.imageUrl,
-    })
+    .post(
+      '/posts',
+      {
+        instrument: data.instrument,
+        description: data.description,
+        price: data.price,
+        transactionType: data.transactionType,
+      },
+      { withCredentials: true }
+    )
     .catch((err) => console.log(err));
 
   if (res.status !== 201) {
