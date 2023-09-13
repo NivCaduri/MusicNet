@@ -7,7 +7,6 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-  TextField,
   Button,
   Box,
   Card,
@@ -16,33 +15,21 @@ import {
 
 const Survey = () => {
   const [selectedBand, setSelectedBand] = useState('');
-  const [otherBand, setOtherBand] = useState('');
   const [results, setResults] = useState({
     'The Beatles': 0,
     'Led Zeppelin': 0,
     'Queen': 0,
     'Pink Floyd': 0,
-    'Other': 0,
   });
 
   const handleBandChange = (event) => {
     setSelectedBand(event.target.value);
   };
 
-  const handleOtherBandChange = (event) => {
-    setOtherBand(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (selectedBand === 'Other' && otherBand.trim() !== '') {
-      setResults((prevResults) => ({
-        ...prevResults,
-        [otherBand]: (prevResults[otherBand] || 0) + 1,
-      }));
-      setOtherBand('');
-    } else if (selectedBand !== 'Other') {
+    if (selectedBand !== '') {
       setResults((prevResults) => ({
         ...prevResults,
         [selectedBand]: (prevResults[selectedBand] || 0) + 1,
@@ -76,20 +63,10 @@ const Survey = () => {
                     key={bandName}
                     value={bandName}
                     control={<Radio sx={{ color: '#FF6B6B' }} />}
-                    label={bandName === 'Other' ? 'Other (Specify):' : bandName}
+                    label={bandName}
                   />
                 ))}
               </RadioGroup>
-
-              {selectedBand === 'Other' && (
-                <TextField
-                  label="Other Band"
-                  variant="outlined"
-                  fullWidth
-                  value={otherBand}
-                  onChange={handleOtherBandChange}
-                />
-              )}
 
               <Button variant="contained" color="primary" type="submit" sx={{ mt: 2, backgroundColor: '#FF6B6B', color: 'white', '&:hover': { backgroundColor: '#FF5757' } }}>
                 Vote
