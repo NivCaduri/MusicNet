@@ -163,6 +163,51 @@ def add_post():
     cursor.close()
     return get_post(new_post_id)
 
+@app.route('/survey', methods=['GET', 'POST'])
+def manage_survey():
+    if request.method == 'GET':
+        return get_survey()
+    else:
+        return add_vote()
+
+def get_survey():
+    query = "select band, votes from survey"
+    cursor = db.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    cursor.close()
+    print(records)
+    header = ['band', 'votes']
+    data = []
+    for r in records:
+        data.append(dict(zip(header, r)))
+    return json.dumps(data)
+
+def add_vote():
+    data = request.get_json()
+    print(data)
+    query = "update survey set votes = votes + 1 where band = %s"
+    values = (data[band])
+    cursor = db.cursor()
+    cursor.execute(query, values)
+    db.commit()
+    new_post_id = cursor.lastrowid
+    cursor.close()
+    return get_vote(new_vote)
+
+def get_vote(new_vote):
+    query = "select id, instrument, description, price, transactionType, created_at from posts where id = %s"
+    values = (id,)
+    cursor = db.cursor()
+    cursor.execute(query, values)
+    record = cursor.fetchone()
+    cursor.close()
+    header = ['id', 'instrument', 'description', 'price', 'transactionType', 'created_at']
+    return json.dumps(dict(zip(header, record)))
+
+
+
+
 @app.route('/Logout', methods=['POST'])
 def logout():
     session_id = request.cookies.get('session_id')

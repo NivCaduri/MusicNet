@@ -2,87 +2,92 @@ import React from 'react';
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  CardMedia,
   IconButton,
   Typography,
 } from '@mui/material';
 import { red } from '@mui/material/colors';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 const PostItem = ({
-  id,
-  instrument,
-  description,
-  price,
+  username,
   transactionType,
+  instrument,
+  price,
+  description,
   created_at,
   user,
 }) => {
-  const isLoggedInUser = () => {
-    if (localStorage.getItem('userId') === user) {
-      return true;
-    }
-    return false;
-  };
-
+  console.log(username);
   return (
     <Card
       sx={{
-        Width: '50%',
-        height: '40vh',
+        width: '50%',
         margin: 1,
         padding: 1,
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '5px 5px 10px #ccc',
+        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+        borderRadius: '10px',
+        background: 'linear-gradient(135deg, #f5f5f5, #ffffff)',
+        border: '2px solid #000', // Add bold borders
       }}
     >
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            {username}
+          </Avatar>
         }
-        action={
-          <IconButton
-            aria-label="settings"
-            LinkComponent={Link}
-            to={`/post/${id}`}
-          >
-            {<OpenInNewIcon />}
-          </IconButton>
-        }
-        title={instrument}
-        subheader="February 28, 1994"
+        title={username}
       />
-      <img height="194" src="" alt="" />
       <CardContent>
-        <Typography paddingBottom={1} variant="h6" color="text.secondary">
-          {price}
+        <Typography variant="subtitle2" color="text.secondary">
+          {transactionType === 'Sale' ? 'Selling' : 'Looking to Buy'}
         </Typography>
-        <hr />
-        <Box paddingTop={1}>
+        <Typography variant="h6" color="text.primary" sx={{ fontSize: '1rem' }}>
+          {instrument}
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          Price: ${price}
+        </Typography>
+        <Box
+          border="2px solid #000" // Add bold borders
+          borderColor="grey.300"
+          borderRadius={1}
+          p={2}
+          mt={2}
+        >
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>
         </Box>
       </CardContent>
-      {isLoggedInUser() && (
-        <CardActions sx={{ marginLeft: 'auto' }}>
-          <IconButton color="warning">
-            <EditIcon />
-          </IconButton>
-          <IconButton color="error">
-            <DeleteIcon />
-          </IconButton>
-        </CardActions>
-      )}
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          borderTop: '2px solid #000', // Add bold border at the top of actions
+          paddingTop: 1, // Add some padding to separate actions from content
+        }}
+      >
+        <IconButton color="primary">
+          <ChatBubbleOutlineIcon />
+          <Typography variant="body2" color="text.primary">
+            Comment
+          </Typography>
+        </IconButton>
+        <IconButton color="success">
+          <ThumbUpIcon />
+          <Typography variant="body2" color="text.primary">
+            Like
+          </Typography>
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };

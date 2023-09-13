@@ -3,7 +3,16 @@ import { AppBar, Tab, Tabs, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const linksArr = ['welcome', 'login'];
+const linksArr = [
+  'home',
+  'welcome',
+  'new',
+  'login',
+  'survey',
+  'piano',
+  'followingusers',
+  'logout',
+];
 const loggedInLinks = [
   'home',
   'welcome',

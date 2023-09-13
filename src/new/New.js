@@ -11,6 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { addPost } from '../api-helpers/helpers';
+import Cookies from 'js-cookie';
 
 const New = () => {
   const [inputs, setInputs] = useState({
@@ -18,6 +19,7 @@ const New = () => {
     description: '',
     price: '',
     transactionType: '', // Add a new state for the transaction type
+    session_id: Cookies.get('session_id'),
   });
 
   const handleChange = (e) => {

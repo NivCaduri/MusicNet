@@ -10,6 +10,7 @@ import {
 import { sendLoginRequest } from '../api-helpers/helpers';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -45,17 +46,16 @@ const Login = () => {
     } else {
       cookieOptions.expires = new Date(Date.now() + 30 * 60 * 1000); // 30 minutes
     }
-
     if (isSignup) {
       sendLoginRequest(true, inputs)
-        .then((data) => localStorage.setItem('userId', data.user._id))
+        .then((data) => Cookies.get('session_id'))
         .then(() => {
           dispatch(loginActions.login());
         })
         .catch((err) => console.log(err));
     } else {
       sendLoginRequest(false, inputs)
-        .then((data) => localStorage.setItem('userId', data.id))
+        .then((data) => Cookies.get('session_id'))
         .then(() => {
           dispatch(loginActions.login());
         })

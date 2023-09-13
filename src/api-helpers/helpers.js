@@ -86,3 +86,13 @@ export const getPostDetails = async (id) => {
   const resData = await res.data;
   return resData;
 };
+
+export const getSurveyDetails = async () => {
+  const res = await axios.get('/survey');
+  if (res.status !== 200) {
+    return console.log('Some Error Occurred');
+  }
+
+  const data = res.data;
+  return data;
+};

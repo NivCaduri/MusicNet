@@ -83,7 +83,10 @@ class Piano extends Component {
         }}
       >
         <h1>Virtual Piano</h1>
-        <p>Try out our new piano and create your melodies with the unique sound of MusicNet.</p>
+        <p>
+          Try out our new piano and create your melodies with the unique sound
+          of MusicNet.
+        </p>
         <div>
           {pianoNotes.map((note) => (
             <button
@@ -93,13 +96,21 @@ class Piano extends Component {
                 note.note.includes('#')
                   ? {
                       ...blackKeyStyle,
-                      backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'black',
-                      color: this.state.activeNote === note.note ? 'black' : 'white',
+                      backgroundColor:
+                        this.state.activeNote === note.note
+                          ? '#ffffcc'
+                          : 'black',
+                      color:
+                        this.state.activeNote === note.note ? 'black' : 'white',
                     }
                   : {
                       ...whiteKeyStyle,
-                      backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'white',
-                      color: this.state.activeNote === note.note ? 'black' : 'black',
+                      backgroundColor:
+                        this.state.activeNote === note.note
+                          ? '#ffffcc'
+                          : 'white',
+                      color:
+                        this.state.activeNote === note.note ? 'black' : 'black',
                     }
               }
             >
