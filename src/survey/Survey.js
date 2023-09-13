@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import {
-  Container,
   Typography,
-  FormControlLabel,
+  Container,
+  Grid,
+  Paper,
   Radio,
   RadioGroup,
+  FormControlLabel,
   TextField,
   Button,
-  FormControl,
-  FormGroup,
-  FormLabel,
   Box,
+  Card,
+  CardContent,
 } from '@mui/material';
 
 const Survey = () => {
@@ -19,9 +20,9 @@ const Survey = () => {
   const [results, setResults] = useState({
     'The Beatles': 0,
     'Led Zeppelin': 0,
-    Queen: 0,
+    'Queen': 0,
     'Pink Floyd': 0,
-    Other: 0,
+    'Other': 0,
   });
 
   const handleBandChange = (event) => {
@@ -34,15 +35,14 @@ const Survey = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedBand === 'Other') {
-      if (otherBand.trim() !== '') {
-        setResults((prevResults) => ({
-          ...prevResults,
-          [otherBand]: (prevResults[otherBand] || 0) + 1,
-        }));
-        setOtherBand('');
-      }
-    } else {
+
+    if (selectedBand === 'Other' && otherBand.trim() !== '') {
+      setResults((prevResults) => ({
+        ...prevResults,
+        [otherBand]: (prevResults[otherBand] || 0) + 1,
+      }));
+      setOtherBand('');
+    } else if (selectedBand !== 'Other') {
       setResults((prevResults) => ({
         ...prevResults,
         [selectedBand]: (prevResults[selectedBand] || 0) + 1,
@@ -51,68 +51,69 @@ const Survey = () => {
   };
 
   return (
-    <Container maxWidth="md">
-      <Typography variant="h3" gutterBottom>
+    <Container maxWidth="md" sx={{ paddingTop: 4 }}>
+      <Typography variant="h3" align="center" gutterBottom>
         Best Band Survey
       </Typography>
+      <Typography variant="h5" align="center" gutterBottom>
+        Vote for the Best Band in the World 🎵
+      </Typography>
+
       <form onSubmit={handleSubmit}>
-        <Typography variant="h5" gutterBottom>
-          Vote for the Best Band in the World
-        </Typography>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Select a band:</FormLabel>
-          <RadioGroup
-            name="band"
-            value={selectedBand}
-            onChange={handleBandChange}
-          >
-            <FormControlLabel
-              value="The Beatles"
-              control={<Radio />}
-              label="The Beatles"
-            />
-            <FormControlLabel
-              value="Led Zeppelin"
-              control={<Radio />}
-              label="Led Zeppelin"
-            />
-            <FormControlLabel value="Queen" control={<Radio />} label="Queen" />
-            <FormControlLabel
-              value="Pink Floyd"
-              control={<Radio />}
-              label="Pink Floyd"
-            />
-            <FormControlLabel
-              value="Other"
-              control={<Radio />}
-              label="Other (Please specify):"
-            />
-          </RadioGroup>
-          {selectedBand === 'Other' && (
-            <TextField
-              label="Other Band"
-              variant="outlined"
-              fullWidth
-              value={otherBand}
-              onChange={handleOtherBandChange}
-            />
-          )}
-        </FormControl>
-        <Button variant="contained" color="primary" type="submit">
-          Vote
-        </Button>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper elevation={3} sx={{ p: 2, borderRadius: '16px', backgroundColor: '#F8F8F8', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+              <Typography variant="h6" gutterBottom>
+                Select a band:
+              </Typography>
+              <RadioGroup
+                name="band"
+                value={selectedBand}
+                onChange={handleBandChange}
+              >
+                {Object.keys(results).map((bandName) => (
+                  <FormControlLabel
+                    key={bandName}
+                    value={bandName}
+                    control={<Radio sx={{ color: '#FF6B6B' }} />}
+                    label={bandName === 'Other' ? 'Other (Specify):' : bandName}
+                  />
+                ))}
+              </RadioGroup>
+
+              {selectedBand === 'Other' && (
+                <TextField
+                  label="Other Band"
+                  variant="outlined"
+                  fullWidth
+                  value={otherBand}
+                  onChange={handleOtherBandChange}
+                />
+              )}
+
+              <Button variant="contained" color="primary" type="submit" sx={{ mt: 2, backgroundColor: '#FF6B6B', color: 'white', '&:hover': { backgroundColor: '#FF5757' } }}>
+                Vote
+              </Button>
+            </Paper>
+          </Grid>
+        </Grid>
       </form>
-      <Box mt={3}>
-        <Typography variant="h5" gutterBottom>
+
+      <Box mt={3} sx={{ margin: '0 auto', maxWidth: '80%' }}>
+        <Typography variant="h5" align="center" gutterBottom>
           Survey Results
         </Typography>
-        <ul>
-          {Object.entries(results).map(([band, count]) => (
-            <li key={band}>
-              {band}: {count}
-            </li>
-          ))}
-        </ul>
+        <Card variant="outlined" sx={{ border: '1px solid #ccc', backgroundColor: '#F8F8F8' }}>
+          <CardContent>
+            <ul style={{ listStyleType: 'none', fontSize: '1.5rem', margin: 0, padding: 0 }}>
+              {Object.entries(results).map(([band, count]) => (
+                <li key={band}>
+                  {band}: {count}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       </Box>
     </Container>
   );
