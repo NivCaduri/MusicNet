@@ -9,6 +9,7 @@ const linksArr = [
   'login',
   'survey',
   'piano',
+  'followingusers',
   'logout',
 ];
 const Header = () => {

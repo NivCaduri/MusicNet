@@ -8,6 +8,7 @@ import OpenPost from './home/OpenPost';
 import Survey from './survey/Survey';
 import Piano from './piano/Piano';
 import Logout from './logout/Logout';
+import FollowingUsers from './FollowingUsers';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/survey" element={<Survey />} />
           <Route path="/piano" element={<Piano />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/followingusers" element={<FollowingUsers />} />
         </Routes>
       </section>
     </div>
