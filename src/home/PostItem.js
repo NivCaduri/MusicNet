@@ -23,8 +23,16 @@ const PostItem = ({
   description,
   price,
   transactionType,
-  // created_at,
+  created_at,
+  user,
 }) => {
+  const isLoggedInUser = () => {
+    if (localStorage.getItem('userId') === user) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Card
       sx={{
@@ -65,14 +73,16 @@ const PostItem = ({
           </Typography>
         </Box>
       </CardContent>
-      <CardActions sx={{ marginLeft: 'auto' }}>
-        <IconButton color="warning">
-          <EditIcon />
-        </IconButton>
-        <IconButton color="error">
-          <DeleteIcon />
-        </IconButton>
-      </CardActions>
+      {isLoggedInUser() && (
+        <CardActions sx={{ marginLeft: 'auto' }}>
+          <IconButton color="warning">
+            <EditIcon />
+          </IconButton>
+          <IconButton color="error">
+            <DeleteIcon />
+          </IconButton>
+        </CardActions>
+      )}
     </Card>
   );
 };

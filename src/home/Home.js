@@ -27,7 +27,8 @@ const Home = () => {
             description={item.description}
             price={item.price}
             transactionType={item.transactionType}
-            // created_at={item.created_at}
+            user_id={item.user_id}
+            created_at={new Date(`${item.created_at}`).toLocaleDateString()}
             key={index}
           />
         ))}

@@ -9,8 +9,11 @@ import Survey from './survey/Survey';
 import Piano from './piano/Piano';
 import Logout from './logout/Logout';
 import FollowingUsers from './FollowingUsers';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <div>
       <header>

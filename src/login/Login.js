@@ -8,9 +8,12 @@ import {
   Checkbox,
 } from '@mui/material';
 import { sendLoginRequest } from '../api-helpers/helpers';
+import { useDispatch } from 'react-redux';
+import { loginActions } from '../store';
 
 const Login = () => {
-  const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const [isSignup, setIsSignup] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
   const handleRememberMeChange = (e) => {
     setRememberMe(e.target.checked);
@@ -31,6 +34,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(inputs);
 
     const cookieOptions = {
       path: '/', // Change this to your desired cookie path
@@ -43,12 +47,18 @@ const Login = () => {
     }
 
     if (isSignup) {
-      sendLoginRequest(true, inputs, cookieOptions)
-        .then((data) => console.log(data))
+      sendLoginRequest(true, inputs)
+        .then((data) => localStorage.setItem('userId', data.user._id))
+        .then(() => {
+          dispatch(loginActions.login());
+        })
         .catch((err) => console.log(err));
     } else {
-      sendLoginRequest(false, inputs, cookieOptions)
-        .then((data) => console.log(data))
+      sendLoginRequest(false, inputs)
+        .then((data) => localStorage.setItem('userId', data.id))
+        .then(() => {
+          dispatch(loginActions.login());
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -126,7 +136,6 @@ const Login = () => {
           <Button
             onClick={() => setIsSignup(!isSignup)}
             sx={{ mt: 2, borderRadius: 10 }}
-            type="submit"
             variant="outlined"
           >
             Change to {isSignup ? 'Login' : 'Signup'}
