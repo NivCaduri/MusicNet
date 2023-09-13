@@ -2,31 +2,32 @@ import React, { Component } from 'react';
 
 // Define your piano notes and import the corresponding sound files
 const pianoNotes = [
-  { note: 'C4', sound: require('./PianoA.wav') },
-  { note: 'C#4', sound: require('./PianoA.wav') },
-  { note: 'D4', sound: require('./PianoA.wav') },
-  { note: 'D#4', sound: require('./PianoA.wav') },
-  { note: 'E4', sound: require('./PianoA.wav') },
-  { note: 'F4', sound: require('./PianoA.wav') },
-  { note: 'F#4', sound: require('./PianoA.wav') },
-  { note: 'G4', sound: require('./PianoA.wav') },
-  { note: 'G#4', sound: require('./PianoA.wav') },
-  { note: 'A4', sound: require('./PianoA.wav') },
-  { note: 'A#4', sound: require('./PianoA.wav') },
-  { note: 'B4', sound: require('./PianoA.wav') },
-  { note: 'C5', sound: require('./PianoA.wav') }, // Second octave
-  { note: 'C#5', sound: require('./PianoA.wav') },
-  { note: 'D5', sound: require('./PianoA.wav') },
-  { note: 'D#5', sound: require('./PianoA.wav') },
-  { note: 'E5', sound: require('./PianoA.wav') },
-  { note: 'F5', sound: require('./PianoA.wav') },
-  { note: 'F#5', sound: require('./PianoA.wav') },
-  { note: 'G5', sound: require('./PianoA.wav') },
-  { note: 'G#5', sound: require('./PianoA.wav') },
-  { note: 'A5', sound: require('./PianoA.wav') },
-  { note: 'A#5', sound: require('./PianoA.wav') },
-  { note: 'B5', sound: require('./PianoA.wav') },
+  { note: 'C4', sound: require('./PianoC4.wav') },
+  { note: 'C#4', sound: require('./PianoCSHARP4.wav') },
+  { note: 'D4', sound: require('./PianoD4.wav') },
+  { note: 'D#4', sound: require('./PianoDSHARP4.wav') },
+  { note: 'E4', sound: require('./PianoE4.wav') },
+  { note: 'F4', sound: require('./PianoF4.wav') },
+  { note: 'F#4', sound: require('./PianoFSHARP4.wav') },
+  { note: 'G4', sound: require('./PianoG4.wav') },
+  { note: 'G#4', sound: require('./PianoGSHARP4.wav') },
+  { note: 'A4', sound: require('./PianoA4.wav') },
+  { note: 'A#4', sound: require('./PianoASHARP4.wav') },
+  { note: 'B4', sound: require('./PianoB4.wav') },
+  { note: 'C5', sound: require('./PianoC5.wav') }, // Second octave
+  { note: 'C#5', sound: require('./PianoCSHARP5.wav') },
+  { note: 'D5', sound: require('./PianoD5.wav') },
+  { note: 'D#5', sound: require('./PianoDSHARP5.wav') },
+  { note: 'E5', sound: require('./PianoE5.wav') },
+  { note: 'F5', sound: require('./PianoF5.wav') },
+  { note: 'F#5', sound: require('./PianoFSHARP5.wav') },
+  { note: 'G5', sound: require('./PianoG5.wav') },
+  { note: 'G#5', sound: require('./PianoGSHARP5.wav') },
+  { note: 'A5', sound: require('./PianoA5.wav') },
+  { note: 'A#5', sound: require('./PianoASHARP5.wav') },
+  { note: 'B5', sound: require('./PianoB5.wav') },
 ];
+
 
 const whiteKeyStyle = {
   width: '60px',
@@ -37,8 +38,8 @@ const whiteKeyStyle = {
   backgroundColor: 'white',
   border: '1px solid #ccc',
   display: 'inline-block',
-  verticalAlign: 'top', // Align the top of the buttons
-  color: 'black', // Set the text color for white keys
+  verticalAlign: 'top',
+  color: 'black',
 };
 
 const blackKeyStyle = {
@@ -51,8 +52,7 @@ const blackKeyStyle = {
   color: 'white',
   border: '1px solid #000',
   display: 'inline-block',
-  verticalAlign: 'top', // Align the top of the buttons
-  color: 'white', // Set the text color for black keys
+  verticalAlign: 'top',
 };
 
 class Piano extends Component {
@@ -77,17 +77,29 @@ class Piano extends Component {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center', // Center both horizontally and vertically
-          alignItems: 'center', // Center both horizontally and vertically
-          height: '100vh', // Set the height of the container to the full viewport height
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          height: '100vh',
+          padding: '20px',
         }}
       >
+<<<<<<< HEAD
         <h1>Virtual Piano</h1>
         <p>
           Try out our new piano and create your melodies with the unique sound
           of MusicNet.
         </p>
         <div>
+=======
+        <h1 style={{ margin: '0 0 20px 0' }}>Virtual Piano</h1>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+>>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
           {pianoNotes.map((note) => (
             <button
               key={note.note}
@@ -96,6 +108,7 @@ class Piano extends Component {
                 note.note.includes('#')
                   ? {
                       ...blackKeyStyle,
+<<<<<<< HEAD
                       backgroundColor:
                         this.state.activeNote === note.note
                           ? '#ffffcc'
@@ -111,6 +124,13 @@ class Piano extends Component {
                           : 'white',
                       color:
                         this.state.activeNote === note.note ? 'black' : 'black',
+=======
+                      backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'black',
+                    }
+                  : {
+                      ...whiteKeyStyle,
+                      backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'white',
+>>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
                     }
               }
             >
@@ -124,3 +144,7 @@ class Piano extends Component {
 }
 
 export default Piano;
+
+
+
+
