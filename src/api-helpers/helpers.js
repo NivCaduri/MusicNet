@@ -96,3 +96,23 @@ export const getSurveyDetails = async () => {
   const data = res.data;
   return data;
 };
+
+export const addVote = async (data) => {
+  const res = await axios
+    .post(
+      '/survey',
+      {
+        band: data.band,
+        votes: data.votes,
+      },
+      { withCredentials: true }
+    )
+    .catch((err) => console.log(err));
+
+  if (res.status !== 201) {
+    return console.log('Error Occurred');
+  }
+
+  const resData = await res.data;
+  return resData;
+};

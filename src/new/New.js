@@ -19,7 +19,7 @@ const New = () => {
     description: '',
     price: '',
     transactionType: '', // Add a new state for the transaction type
-    session_id: Cookies.get('session_id'),
+    session_id: document.cookie,
   });
 
   const handleChange = (e) => {

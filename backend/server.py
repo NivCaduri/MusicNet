@@ -187,22 +187,22 @@ def add_vote():
     data = request.get_json()
     print(data)
     query = "update survey set votes = votes + 1 where band = %s"
-    values = (data[band])
+    values = (data['band'])
     cursor = db.cursor()
     cursor.execute(query, values)
     db.commit()
-    new_post_id = cursor.lastrowid
+    new_vote_id = cursor.lastrowid
     cursor.close()
-    return get_vote(new_vote)
+    return get_vote(new_vote_id)
 
-def get_vote(new_vote):
-    query = "select id, instrument, description, price, transactionType, created_at from posts where id = %s"
+def get_vote(id):
+    query = "select id, band, votes from survey where id = %s"
     values = (id,)
     cursor = db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
     cursor.close()
-    header = ['id', 'instrument', 'description', 'price', 'transactionType', 'created_at']
+    header = ['id', 'band', 'votes']
     return json.dumps(dict(zip(header, record)))
 
 

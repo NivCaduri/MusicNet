@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const linksArr = [
-  'home',
+  'marketplace',
   'welcome',
   'new',
   'login',
@@ -12,15 +12,17 @@ const linksArr = [
   'piano',
   'followingusers',
   'logout',
+  'readme',
 ];
 const loggedInLinks = [
-  'home',
+  'marketplace',
   'welcome',
   'new',
   'survey',
   'piano',
   'followingusers',
   'logout',
+  'readme',
 ];
 const Header = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -37,7 +39,7 @@ const Header = () => {
             ? loggedInLinks.map((link) => (
                 <Tab
                   LinkComponent={Link}
-                  to={`/${link === 'home' ? '' : link}`}
+                  to={`/${link === 'login' ? '' : link}`}
                   sx={{
                     textDecoration: 'none',
                     ':hover': {
@@ -52,7 +54,7 @@ const Header = () => {
             : linksArr.map((link) => (
                 <Tab
                   LinkComponent={Link}
-                  to={`/${link === 'home' ? '' : link}`}
+                  to={`/${link === 'login' ? '' : link}`}
                   sx={{
                     textDecoration: 'none',
                     ':hover': {

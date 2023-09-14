@@ -48,14 +48,14 @@ const Login = () => {
     }
     if (isSignup) {
       sendLoginRequest(true, inputs)
-        .then((data) => Cookies.get('session_id'))
+        .then((data) => localStorage.setItem('userId', data.user._id))
         .then(() => {
           dispatch(loginActions.login());
         })
         .catch((err) => console.log(err));
     } else {
       sendLoginRequest(false, inputs)
-        .then((data) => Cookies.get('session_id'))
+        .then((data) => localStorage.setItem('userId', data.id))
         .then(() => {
           dispatch(loginActions.login());
         })

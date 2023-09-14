@@ -16,7 +16,6 @@ import { getSurveyDetails } from '../api-helpers/helpers';
 
 const Survey = () => {
   const [selectedBand, setSelectedBand] = useState('');
-<<<<<<< HEAD
   const [results, setResults] = useState({});
   const [survey, setSurvey] = useState([]);
 
@@ -28,14 +27,6 @@ const Survey = () => {
       })
       .catch((err) => console.error(err));
   }, []);
-=======
-  const [results, setResults] = useState({
-    'The Beatles': 0,
-    'Led Zeppelin': 0,
-    'Queen': 0,
-    'Pink Floyd': 0,
-  });
->>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
 
   const handleBandChange = (event) => {
     setSelectedBand(event.target.value);
@@ -86,16 +77,11 @@ const Survey = () => {
                     key={item.band}
                     value={item.band}
                     control={<Radio sx={{ color: '#FF6B6B' }} />}
-<<<<<<< HEAD
                     label={item.band}
-=======
-                    label={bandName}
->>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
                   />
                 ))}
               </RadioGroup>
 
-<<<<<<< HEAD
               <Button
                 variant="contained"
                 color="primary"
@@ -107,9 +93,6 @@ const Survey = () => {
                   '&:hover': { backgroundColor: '#FF5757' },
                 }}
               >
-=======
-              <Button variant="contained" color="primary" type="submit" sx={{ mt: 2, backgroundColor: '#FF6B6B', color: 'white', '&:hover': { backgroundColor: '#FF5757' } }}>
->>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
                 Vote
               </Button>
             </Paper>

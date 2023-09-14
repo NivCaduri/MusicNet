@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import PostItem from './PostItem';
 import { getAllPosts } from '../api-helpers/helpers';
 
-// const Home = () => {
+// const MarketPlace = () => {
 //   const [posts, setPosts] = useState();
 //   useEffect(() => {
 //     getAllPosts()
@@ -36,9 +36,9 @@ import { getAllPosts } from '../api-helpers/helpers';
 //   );
 // };
 
-// export default Home;
+// export default MarketPlace;
 
-const Home = () => {
+const MarketPlace = () => {
   const [posts, setPosts] = useState();
   useEffect(() => {
     getAllPosts()
@@ -73,4 +73,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MarketPlace;

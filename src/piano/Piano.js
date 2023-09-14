@@ -83,14 +83,6 @@ class Piano extends Component {
           padding: '20px',
         }}
       >
-<<<<<<< HEAD
-        <h1>Virtual Piano</h1>
-        <p>
-          Try out our new piano and create your melodies with the unique sound
-          of MusicNet.
-        </p>
-        <div>
-=======
         <h1 style={{ margin: '0 0 20px 0' }}>Virtual Piano</h1>
         <div
           style={{
@@ -99,7 +91,6 @@ class Piano extends Component {
             justifyContent: 'center',
           }}
         >
->>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
           {pianoNotes.map((note) => (
             <button
               key={note.note}
@@ -108,29 +99,11 @@ class Piano extends Component {
                 note.note.includes('#')
                   ? {
                       ...blackKeyStyle,
-<<<<<<< HEAD
-                      backgroundColor:
-                        this.state.activeNote === note.note
-                          ? '#ffffcc'
-                          : 'black',
-                      color:
-                        this.state.activeNote === note.note ? 'black' : 'white',
-                    }
-                  : {
-                      ...whiteKeyStyle,
-                      backgroundColor:
-                        this.state.activeNote === note.note
-                          ? '#ffffcc'
-                          : 'white',
-                      color:
-                        this.state.activeNote === note.note ? 'black' : 'black',
-=======
                       backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'black',
                     }
                   : {
                       ...whiteKeyStyle,
                       backgroundColor: this.state.activeNote === note.note ? '#ffffcc' : 'white',
->>>>>>> 6c6a0a03f9026e86cdf6c6569b5b5e9f711d1c22
                     }
               }
             >
