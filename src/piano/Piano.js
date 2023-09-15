@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 
 // Define your piano notes and import the corresponding sound files
 const pianoNotes = [
-  { note: 'C4', sound: require('./PianoC4.wav') },
-  { note: 'C#4', sound: require('./PianoCSHARP4.wav') },
-  { note: 'D4', sound: require('./PianoD4.wav') },
-  { note: 'D#4', sound: require('./PianoDSHARP4.wav') },
-  { note: 'E4', sound: require('./PianoE4.wav') },
-  { note: 'F4', sound: require('./PianoF4.wav') },
-  { note: 'F#4', sound: require('./PianoFSHARP4.wav') },
-  { note: 'G4', sound: require('./PianoG4.wav') },
-  { note: 'G#4', sound: require('./PianoGSHARP4.wav') },
-  { note: 'A4', sound: require('./PianoA4.wav') },
-  { note: 'A#4', sound: require('./PianoASHARP4.wav') },
-  { note: 'B4', sound: require('./PianoB4.wav') },
-  { note: 'C5', sound: require('./PianoC5.wav') }, // Second octave
-  { note: 'C#5', sound: require('./PianoCSHARP5.wav') },
-  { note: 'D5', sound: require('./PianoD5.wav') },
-  { note: 'D#5', sound: require('./PianoDSHARP5.wav') },
-  { note: 'E5', sound: require('./PianoE5.wav') },
-  { note: 'F5', sound: require('./PianoF5.wav') },
-  { note: 'F#5', sound: require('./PianoFSHARP5.wav') },
-  { note: 'G5', sound: require('./PianoG5.wav') },
-  { note: 'G#5', sound: require('./PianoGSHARP5.wav') },
-  { note: 'A5', sound: require('./PianoA5.wav') },
-  { note: 'A#5', sound: require('./PianoASHARP5.wav') },
-  { note: 'B5', sound: require('./PianoB5.wav') },
+  { note: 'C4', sound: require('./PianoC4.mp3') },
+  { note: 'C#4', sound: require('./PianoCSHARP4.mp3') },
+  { note: 'D4', sound: require('./PianoD4.mp3') },
+  { note: 'D#4', sound: require('./PianoDSHARP4.mp3') },
+  { note: 'E4', sound: require('./PianoE4.mp3') },
+  { note: 'F4', sound: require('./PianoF4.mp3') },
+  { note: 'F#4', sound: require('./PianoFSHARP4.mp3') },
+  { note: 'G4', sound: require('./PianoG4.mp3') },
+  { note: 'G#4', sound: require('./PianoGSHARP4.mp3') },
+  { note: 'A4', sound: require('./PianoA4.mp3') },
+  { note: 'A#4', sound: require('./PianoASHARP4.mp3') },
+  { note: 'B4', sound: require('./PianoB4.mp3') },
+  { note: 'C5', sound: require('./PianoC5.mp3') }, // Second octave
+  { note: 'C#5', sound: require('./PianoCSHARP5.mp3') },
+  { note: 'D5', sound: require('./PianoD5.mp3') },
+  { note: 'D#5', sound: require('./PianoDSHARP5.mp3') },
+  { note: 'E5', sound: require('./PianoE5.mp3') },
+  { note: 'F5', sound: require('./PianoF5.mp3') },
+  { note: 'F#5', sound: require('./PianoFSHARP5.mp3') },
+  { note: 'G5', sound: require('./PianoG5.mp3') },
+  { note: 'G#5', sound: require('./PianoGSHARP5.mp3') },
+  { note: 'A5', sound: require('./PianoA5.mp3') },
+  { note: 'A#5', sound: require('./PianoASHARP5.mp3') },
+  { note: 'B5', sound: require('./PianoB5.mp3') },
 ];
 
 
@@ -117,7 +117,3 @@ class Piano extends Component {
 }
 
 export default Piano;
-
-
-
-
